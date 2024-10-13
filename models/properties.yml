@@ -32,3 +32,7 @@ models:
     description: "Parking statistics for start by 500 m hexagons"
   - name: "trips_finish_stat"
     description: "Parking statistics for finish by 10 m hexagons"
+  - name: "trips_users"
+    description: "General trips statistics with sex and age of user"
+    config:
+      materialized: "incremental"

@@ -43,3 +43,10 @@ models:
     description: "User events without duplicates"
     config:
       materialized: "incremental"
+  - name: "revenue_daily"
+    description: "Daily revenue from scooters trips"
+    config:
+      materialized: "incremental"
+      strategy: "merge"
+      unique_key: ["date"]
+      on_schema_change: append_new_columns

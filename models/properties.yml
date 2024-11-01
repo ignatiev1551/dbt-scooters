@@ -58,3 +58,10 @@ models:
     description: "Aggregate model of scooter's companies"
   - name: "companies_trips"
     description: "Statistics of using scooters by thier company"
+  - name: "events_full"
+    description: "User events enriched with meaningful types"
+    config:
+      materialized: "view"
+  - name: "events_stat"
+    description: "Statistics of canceled trips"
+   

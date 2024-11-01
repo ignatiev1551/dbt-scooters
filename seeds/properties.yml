@@ -5,4 +5,8 @@ seeds:
   - name: "models"
     description: "Scooter models info and statistics"
     config:
+      delimiter: "," 
+  - name: "event_types"
+    description: "Mapping type of event trips"
+    config:
       delimiter: ","

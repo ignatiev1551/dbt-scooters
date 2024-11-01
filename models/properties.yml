@@ -54,3 +54,7 @@ models:
     description: "Concurrent trips"
     config:
       materialized: "incremental"
+  - name: "companies"
+    description: "Aggregate model of scooter's companies"
+  - name: "companies_trips"
+    description: "Statistics of using scooters by thier company"

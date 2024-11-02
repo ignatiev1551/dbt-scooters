@@ -10,3 +10,7 @@ seeds:
     description: "Mapping type of event trips"
     config:
       delimiter: ","
+  - name: "age_groups"
+    description: "Age groups for using in trips statistics"
+    config:
+      delimiter: ","

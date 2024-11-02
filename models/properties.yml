@@ -64,4 +64,5 @@ models:
       materialized: "view"
   - name: "events_stat"
     description: "Statistics of canceled trips"
-   
+  - name: "trips_age_group"
+    description: "Statistics of trips by spliting on age groups"

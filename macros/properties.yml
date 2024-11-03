@@ -3,3 +3,9 @@ version: 2
 macros:
   - name: "updated_at"
     description: "Columns which represent timestamp of the last update"
+  - name: "date_in_moscow"
+    description: "Casting timestamptz to date in MSK zone"
+    arguments:
+      - name: "ts_col"
+        type: "string"
+        description: "Timestamp column in timestamptz format"

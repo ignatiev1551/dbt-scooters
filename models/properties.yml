@@ -39,6 +39,10 @@ models:
     description: "General trips statistics with sex and age of user"
     config:
       materialized: "incremental"
+      post_hook:
+        - "analyze dbt.trips_users" 
+        - sql: "vacuum dbt.trips_users"
+          transaction: false
   - name: "events_clean"
     description: "User events without duplicates"
     config:

@@ -43,6 +43,8 @@ models:
     description: "User events without duplicates"
     config:
       materialized: "incremental"
+      strategy: "merge"
+      unique_key: ["user_id","timestamp","type_id"]
   - name: "revenue_daily"
     description: "Daily revenue from scooters trips"
     config:

@@ -27,10 +27,7 @@ sources:
               - not_null:
                   config:
                     severity: "warn"
-
-  
-
-      
+    
       - name: "events"
         description: "Event of scooter's trips"
 models:
@@ -46,6 +43,9 @@ models:
       - columns: ["date"]
   - name: "trips_age_daily"
     description: "Daily trips statistics by user age"
+    tests:
+      - unique:
+          column_name: "date::text || age::text"
   - name: "trips_age_daily_stat"
     description: "Aggregation of daily trips statistics by user age"
   - name: "trips_geom"
@@ -78,6 +78,11 @@ models:
     description: "Aggregate model of scooter's companies"
   - name: "companies_trips"
     description: "Statistics of using scooters by thier company"
+    columns:
+      - name: "company"
+        description: "Scooter's manufactures"
+        tests:
+          - unique
   - name: "events_full"
     description: "User events enriched with meaningful types"
     config:

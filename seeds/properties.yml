@@ -14,3 +14,16 @@ seeds:
     description: "Age groups for using in trips statistics"
     config:
       delimiter: ","
+    columns:
+      - name: "group"
+        description: "Name of the age group"
+        tests:
+          - "unique_not_null"
+      - name: "age_start"
+        description: "The lower boundary of the age group"
+        tests:
+          - "unique_not_null"
+      - name: "age_end"
+        description: "The higher boundary of the age group"
+        tests:
+          - "unique_not_null"

@@ -3,14 +3,27 @@ version: 2
 
 seeds:
   - name: "models"
-    description: "Scooter models info and statistics"
+    description: >
+       Scooter model information and park statistics by model.
+       Includes information about the manufacturing company.
+       Data received from the service team and uploaded by Mark.
+       Data is current as of summer 2023.
     config:
       delimiter: "," 
   - name: "event_types"
-    description: "Mapping type of event trips"
+    description: "{{ doc('event_types') }}"
     config:
       delimiter: ","
-  - name: "age_groups"
+    columns:
+      - name: "type_id"
+        description: >
+                       An integer representing the unique identifier for each event type. 
+                       This ID is used in the user events table to refer to specific event types.
+      - name: "type"
+        description: >
+                       A string providing the textual name of the event type. 
+                       This column provides context for the `type_id`, allowing easily understand what each event represents
+  - name: "age_groups"      
     description: "Age groups for using in trips statistics"
     config:
       delimiter: ","

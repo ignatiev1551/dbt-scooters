@@ -1,5 +1,5 @@
 default:
-  target:
+  target: dev
   outputs:
     dev:
       type: postgres

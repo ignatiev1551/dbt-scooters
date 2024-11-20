@@ -102,3 +102,13 @@ models:
     description: "Statistics of canceled trips"
   - name: "trips_age_group"
     description: "Statistics of trips by spliting on age groups"
+  - name: "sex_age_pivot"
+    description: "The pivot table an user sex depending of age"
+    columns:
+      - name: "age"
+        description: "User age"
+        tests:
+          - dbt_utils.not_constant
+    test:
+      - unique_key:
+          columns: ["age"]

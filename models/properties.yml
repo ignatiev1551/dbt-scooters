@@ -101,6 +101,10 @@ models:
     description: "User events enriched with meaningful types"
     config:
       materialized: "view"
+  - name: "events_stream"
+    description: "User events prepered for product analysis"
+    config:
+      materialized: "ephemeral"
   - name: "events_stat"
     description: "Statistics of canceled trips"
   - name: "trips_age_group"
@@ -117,3 +121,7 @@ models:
           columns: ["age"]
       - dbt_expectations.expect_table_column_count_to_equal:
           value: 3
+  - name: "book_scooter_retention"
+    description: >
+                  A retention analysis, which tells how many people who did to start search a scooter booked it
+                  on or after 1, 7, 14 days (or weeks, months, years), etc

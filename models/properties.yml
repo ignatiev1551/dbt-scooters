@@ -44,6 +44,9 @@ models:
     description: "Prepered trips for next analyzing"
     config:
       materialized: "view"
+    tests:
+      - row_count_same:
+          compare_model: "source('scooters_raw', 'trips')"
   - name: "trips_stat"
     description: "General trips' statistics"
   - name: "trips_stat_daily"
@@ -109,6 +112,8 @@ models:
         description: "User age"
         tests:
           - dbt_utils.not_constant
-    test:
+    tests:
       - unique_key:
           columns: ["age"]
+      - dbt_expectations.expect_table_column_count_to_equal:
+          value: 3

@@ -47,6 +47,11 @@ models:
     tests:
       - row_count_same:
           compare_model: "source('scooters_raw', 'trips')"
+  - name: "users_prep"
+    description: "Prepared users for next analyzing"
+    config:
+      materialized: "view"
+
   - name: "trips_stat"
     description: "General trips' statistics"
   - name: "trips_stat_daily"
@@ -125,3 +130,62 @@ models:
     description: >
                   A retention analysis, which tells how many people who did to start search a scooter booked it
                   on or after 1, 7, 14 days (or weeks, months, years), etc
+  
+  - name: "users_class_weekly_trips"
+    description: >
+                  A classification of users by completed trips per week
+    columns:
+      - name: "user_id"
+        description: "User's identificator"
+      - name: "fan"
+        description: "User uses scooter's service more than 6 times per week"
+      - name: "regular"
+        description: "User uses scooter's service more than 3 times per week"
+    tests:
+      - unique_key:
+          columns: ["user_id"]
+  - name: "users_class_weekly_destination_trips"
+    description: >
+                  A data's preparation for users' classification by morning trips 
+                  to the same place during a week
+    columns:
+    - name: "user_id"
+      description: "User's identificator"
+    - name: "to_work"
+      description: "The indication of using scooters for trips to work"
+    tests:
+      - unique_key:
+          columns: ["user_id"]
+  - name: "users_class_monthly_trips"
+    description: "Users' classification by trips which was done during a month"
+    columns:
+    - name: "user_id"
+      description: "User's identificator"
+    - name: "rare"
+      description: "The indicator of rare using scooters during a month (less than 2 times a month)"
+    data_tests:
+      - unique_key:
+          columns: ["user_id"]
+  - name: "users_class"
+    description: "Users' classification by using scooters' service"
+    data_tests:
+      - unique_key:
+          columns: ["user_id"]
+  - name: "users_class_stat"
+    description: >
+                  An overall group statistis of using service with a number of users in each group
+  - name: "trips_age_sex_daily"
+    description: "Daily statistics of trips aggregated by age and sex"
+    data_tests:
+      - unique_key:
+          columns: ["date", "age", "sex"]
+  - name: "trips_age_sex_weekly"
+    description: "Weekly statistics of trips aggregated by age and sex"
+    data_tests:
+      - unique_key:
+          columns: ["week", "age", "sex"]
+  - name: "trips_age_sex_monthly"
+    description: "Monthly statistics of trips aggregated by age and sex"
+    data_tests:
+      - unique_key:
+          columns: ["month", "age", "sex"]

@@ -21,7 +21,29 @@ models:
       - name: "Updated_at"
         description: "The date of the revenue's daily calculation"
         data_type: "timestamptz"
-  
+  - name: "revenue_users_monthly"
+    description: "Monthly revenue by user"
+    data_tests:
+      - unique_key:
+           columns: ["user_id", "month"]
+  - name: "revenue_monthly"
+    description: "Monthly revenue from scooter's trips"   
+    data_tests:
+      - unique_key:
+          columns: ["month"]
+      - dbt_utils.expression_is_true:
+         expression: "users>=1000 and revenue_median>=500"
+  - name: "revenue_monthly_report"
+    description: "Monthly revenue report"
+    config:
+      materialized: "incremental"
+      strategy: "append"
+      on_schema_change: "append_new_columns"
+      full_refresh: false
+    data_tests:
+      - unique_key:
+         columns: [ "month" ]
+    
 exposures:
   - name: "financial_dashboard"
     label: "Financial Dashboard"

@@ -40,3 +40,17 @@ seeds:
         description: "The higher boundary of the age group"
         tests:
           - "unique_not_null"
+  - name: sex_name
+    description: "Classification first names by sex for filling missing values in user's table"
+    config:
+      delimiter: ","
+    columns:
+      - name: "first_name"
+        description: ""
+        data_tests:
+          - "unique_not_null"
+      - name: "sex"
+        description: ""
+        data_tests:
+          - accepted_values:
+              values: ["M", "F"]

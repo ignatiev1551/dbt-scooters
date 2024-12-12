@@ -189,3 +189,20 @@ models:
     data_tests:
       - unique_key:
           columns: ["month", "age", "sex"]
+  - name: "first_name_sex"
+    description: "Filling user's missing sex from available information"
+    data_tests:
+      - row_count_same:
+          compare_model: "source('scooters_raw', 'users')"
+  - name: "users_full"
+    description: "Filled missings in user's sex"
+    data_tests:
+       - row_count_same:
+           compare_model: "source('scooters_raw', 'users')"
+    columns:
+       - name: "sex"
+         description: "User gender"
+         data_tests:
+              - accepted_values:
+                  values: ["M", "F"]
+              - not_null
